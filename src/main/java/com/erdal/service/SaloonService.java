@@ -6,6 +6,7 @@ import com.erdal.DTO.SaloonDTO;
 import com.erdal.DTO.UserDTO;
 import com.erdal.model.Saloon;
 import com.erdal.requests.SaloonRequest;
+import com.erdal.responseMessage.SaloonResponse;
 
 public interface SaloonService {
 	
@@ -27,6 +28,6 @@ public interface SaloonService {
 	List<Saloon> searchSaloonByCityName(String city);
 	
 	
-	Saloon deleteSaloonByOwnerId(Long ownerId);
+	SaloonResponse deleteSaloonByOwnerId(Long ownerId);
 
 }

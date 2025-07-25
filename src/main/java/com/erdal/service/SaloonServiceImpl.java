@@ -11,6 +11,8 @@ import com.erdal.exeptions.SaloonNotFoundExeption;
 import com.erdal.model.Saloon;
 import com.erdal.repository.saloonRepository;
 import com.erdal.requests.SaloonRequest;
+import com.erdal.responseMessage.SaloonResponse;
+import com.erdal.responseMessage.SaloonResponseMessage;
 
 import lombok.RequiredArgsConstructor;
 
@@ -87,9 +89,11 @@ public class SaloonServiceImpl implements SaloonService {
 	}
 
 	@Override
-	public Saloon deleteSaloonByOwnerId(Long ownerId) {
-		// TODO Auto-generated method stub
-		return null;
+	public SaloonResponse deleteSaloonByOwnerId(Long ownerId) {
+		Saloon saloon=saloonRepository.findByOwnerId(ownerId);
+		 saloonRepository.delete(saloon);
+		 
+		 return new SaloonResponse(SaloonResponseMessage.SALOON_REMOVED);
 	}
 	
 	//-----------REUSEABLE METODS------------ 
@@ -97,7 +101,8 @@ public class SaloonServiceImpl implements SaloonService {
 	//-----------findSalonBySaloonid----------
 	public Saloon findSalonBySaloonId(Long id) {
 		
-	Saloon saloon=	saloonRepository.findById(id).orElseThrow(()-> new SaloonNotFoundExeption(String.format(SaloonErrorMessages.SALOON_ID_NOT_FOUND, id) ) );
+	Saloon saloon=	saloonRepository.findById(id).orElseThrow(()-> new SaloonNotFoundExeption
+			                                                 (String.format(SaloonErrorMessages.SALOON_ID_NOT_FOUND, id) ) );
 		
 		return saloon;
 	}

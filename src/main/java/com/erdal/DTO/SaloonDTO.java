@@ -29,7 +29,7 @@ public class SaloonDTO {
 	private String city;
 	
 	
-	private String ownerId;
+	private Long ownerId;
 	
 	
 	private LocalTime openTime;
