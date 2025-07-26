@@ -2,11 +2,9 @@ package com.erdal.service;
 
 import java.util.List;
 
-import com.erdal.DTO.SaloonDTO;
 import com.erdal.DTO.UserDTO;
 import com.erdal.model.Saloon;
 import com.erdal.requests.SaloonRequest;
-import com.erdal.responseMessage.SaloonResponse;
 
 public interface SaloonService {
 	
@@ -28,6 +26,6 @@ public interface SaloonService {
 	List<Saloon> searchSaloonByCityName(String city);
 	
 	
-	SaloonResponse deleteSaloonByOwnerId(Long ownerId);
+	void deleteSaloonByOwnerId(Long ownerId);
 
 }

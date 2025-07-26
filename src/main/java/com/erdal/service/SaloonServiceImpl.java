@@ -4,15 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.erdal.DTO.SaloonDTO;
 import com.erdal.DTO.UserDTO;
 import com.erdal.exeptions.SaloonErrorMessages;
 import com.erdal.exeptions.SaloonNotFoundExeption;
 import com.erdal.model.Saloon;
-import com.erdal.repository.saloonRepository;
+import com.erdal.repository.SaloonRepository;
 import com.erdal.requests.SaloonRequest;
-import com.erdal.responseMessage.SaloonResponse;
-import com.erdal.responseMessage.SaloonResponseMessage;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SaloonServiceImpl implements SaloonService {
 	
-	private final saloonRepository saloonRepository;
+	private final SaloonRepository saloonRepository;
 	
 	
 
@@ -29,7 +26,7 @@ public class SaloonServiceImpl implements SaloonService {
 	public Saloon createSaloon(SaloonRequest saloonRequest, UserDTO userDTO) {
 		
 		Saloon saloon=new Saloon();
-		saloon.setSallonName(saloonRequest.getSallonName());
+		saloon.setSaloonName(saloonRequest.getSaloonName());
 		saloon.setAddress(saloonRequest.getAddress());
 		saloon.setCity(saloonRequest.getCity());
 		saloon.setEmail(saloonRequest.getEmail());
@@ -51,7 +48,7 @@ public class SaloonServiceImpl implements SaloonService {
 		throw new SaloonNotFoundExeption(SaloonErrorMessages.SALOON_NOT_FOUND);
 		
 	}
-	saloon.setSallonName(saloonRequest.getSallonName());
+	saloon.setSaloonName(saloonRequest.getSaloonName());
 	saloon.setAddress(saloonRequest.getAddress());
 	saloon.setCity(saloonRequest.getCity());
 	saloon.setEmail(saloonRequest.getEmail());
@@ -61,7 +58,7 @@ public class SaloonServiceImpl implements SaloonService {
 	saloon.setCloseTime(saloonRequest.getCloseTime());
 	saloon.setOwnerId(userDTO.getId());
 		
-		return null;
+		return saloon;
 	}
 
 	@Override
@@ -89,11 +86,11 @@ public class SaloonServiceImpl implements SaloonService {
 	}
 
 	@Override
-	public SaloonResponse deleteSaloonByOwnerId(Long ownerId) {
+	public void deleteSaloonByOwnerId(Long ownerId) {
 		Saloon saloon=saloonRepository.findByOwnerId(ownerId);
 		 saloonRepository.delete(saloon);
 		 
-		 return new SaloonResponse(SaloonResponseMessage.SALOON_REMOVED);
+		
 	}
 	
 	//-----------REUSEABLE METODS------------ 

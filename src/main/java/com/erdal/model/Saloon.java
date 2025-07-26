@@ -2,6 +2,7 @@ package com.erdal.model;
 
 import java.time.LocalTime;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -10,11 +11,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "t_saloon")
+@Table
 public class Saloon {
 	
 	@Id
@@ -22,7 +27,7 @@ public class Saloon {
 	private Long id;
 	
 	@Column(nullable = false)
-	private String sallonName;
+	private String saloonName;
 	
 	@ElementCollection
 	private List<String> images;
@@ -46,11 +51,12 @@ public class Saloon {
 	@Column(nullable = false)
 	private  Long ownerId;
 	
-	@Column(nullable = false)
+    @DateTimeFormat
 	private LocalTime openTime;
 	
 	
-	@Column(nullable = false)
+//	@Column(nullable = false)
+    @DateTimeFormat
 	private LocalTime closeTime;
 	
 	

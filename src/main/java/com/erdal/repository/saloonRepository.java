@@ -10,16 +10,17 @@ import org.springframework.stereotype.Repository;
 import com.erdal.model.Saloon;
 
 @Repository
-public interface saloonRepository extends JpaRepository<Saloon, Long> {
+public interface SaloonRepository extends JpaRepository<Saloon, Long> {
 
 	Saloon findByOwnerId(Long id);
 	
 	
-	@Query( "SELECT s from Saloon s WHERE "
-	        + "(lower(s.city) like lower(concat('%', :keyword, '%')) OR " 
-			+ "(lower(s.saloonName) like lower(concat('%', :keyword, '%')) OR"
-			+ "(lower(s.address) like lower(concat('%', :keyword, '%'))")
-		List<Saloon> searchSaloons(@Param("keyword") String keyword);
+	 @Query("SELECT s FROM Saloon s WHERE " +
+	           "lower(s.city) LIKE lower(concat('%', :city, '%')) OR " +
+	           "lower(s.saloonName) LIKE lower(concat('%', :city, '%')) OR " +
+	           "lower(s.address) LIKE lower(concat('%', :city, '%'))")
+	    List<Saloon> searchSaloons(@Param("city") String city);
+	
 	
 	
 	
