@@ -57,8 +57,8 @@ public class SaloonServiceImpl implements SaloonService {
 	saloon.setOpenTime(saloonRequest.getOpenTime());
 	saloon.setCloseTime(saloonRequest.getCloseTime());
 	saloon.setOwnerId(userDTO.getId());
-		
-		return saloon;
+		Saloon newSaloon=saloonRepository.save(saloon);
+		return newSaloon;
 	}
 
 	@Override
